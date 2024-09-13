@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        .logo {
+            max-width: 170px;
+        }
+
+        .navbar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #383838;
+            padding-top: 20px;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .person {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 270px;
+            max-width: 270px;
+        }
+
+        .task-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 700px;
+            max-width: 700px;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 17px;
+            margin: 0 auto;
+        }
+
+        table {
+            border-spacing: 16px; /* Adds 20px between columns and rows */
+            border-collapse: separate;
+            width: 100%;
+        }
+
+        .td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .team-box{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 300px;
+            max-width: 300px;
+        }
+        .deadline-box{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 320px;
+            max-width: 320px;  
+        }
+        .about-box, .task-box, .team-box, .deadline-box {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-box:hover, .task-box:hover, .team-box:hover, .deadline-box:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); 
+}
+.modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <img class="logo" src="ingoude.png" alt="">
+        <a href="#">Dashboard</a>
+        <a  id="taskBtn">Tasks Assigned</a>
+        <a href="index.html">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <h1>Employee Dashboard</h1>
+        <section class="about">
+            <div class="flex-container">
+                <div class="about-box d-flex align-items-center">
+                    <div class="about-container">
+                        <div class="image-container">
+                            <img class="person" src="admin.JPG" alt="Profile Image" class="profile-image">
+                        </div>
+                        <div class="info-container">
+                            <h4>Abha Vashisht</h4>
+                            <p>Email: abha@gmail.com</p>
+                            <p>Phone: +91 6239691516</p>
+                            <p>Company: BlueWave Technologies</p>
+                            <p>Position: IT team</p>
+                        </div>
+                    </div>
+                </div>  
+                <div class="task-box">
+                    <h2>Tasks</h2>
+                    <table>
+                        <tr>
+                            <td>Responsive Portfolio Website:</td>
+                            <td>UI/UX Design</td>
+                            <td style="color: #90A87F;">Completed</td>
+                        </tr>
+                        <tr>
+                            <td>E-Commerce Product Dashboard:</td>
+                            <td>Backend Integration</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                        </tr>
+                        <tr>
+                            <td>Single Page Application:</td>
+                            <td>API Integration</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                        </tr>
+                        <tr>
+                            <td>Expense Tracker:</td>
+                            <td>Responsive Design</td>
+                            <td style="color: #90A87F;">Completed</td>
+                        </tr>
+                        <tr>
+                            <td>Quiz App:</td>
+                            <td>Question Management System</td>
+                            <td style="color: #90A87F;">Completed</td>
+                        </tr>
+                        <tr>
+                            <td>Expense Tracker:</td>
+                            <td>Responsive Design</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                        </tr>
+                        <tr>
+                            <td>Quiz App:</td>
+                            <td>Question Management System</td>
+                            <td style="color: #90A87F;">Completed</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        <div class="flex-container">
+            <div class="projects">
+                <div class="about-box">
+                    <h2>Projects</h2>
+                    <p>Responsive Portfolio Website</p>
+                    <p>E-Commerce Product Dashboard</p>
+                    <p>Single Page Application (SPA)</p>
+                    <p>Expense Tracker</p>
+                    <p>Quiz App</p>
+                </div>
+            </div>
+
+            <div class="Deadlines">
+                <div class="deadline-box">
+                    <h2>Deadlines</h2>
+                    <table>
+                    <tr>
+                    <td>Expense Tracker</td>
+                    <td>13 Sep</td>
+                    </tr>
+                    <tr>
+                    <td>Responsive Portfolio Website</td>
+                    <td style="color: rgb(190, 61, 61);">12 Sep</td>
+                    </tr>
+                    <tr>
+                    <td>Single Page Application</td>
+                    <td>21 Sep</td>
+                    </tr>
+                    <tr>
+                    <td>Quiz App</td>
+                    <td>30 Oct</td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="Team">
+                <div class="team-box">
+                    <h2>Team Members</h2>
+                    <table>
+                    <tr>
+                    <td>Abha Vashisht</td>
+                    <td>Frontend</td>
+                    </tr>
+                    <tr>
+                    <td>Aanchal Jha</td>
+                    <td>Frontend</td>
+                    </tr>
+                    <tr>
+                    <td>Aalishna Taneja</td>
+                    <td>Frontend</td>
+                    </tr>
+                    <tr>
+                    <td>Aditya Vashisht</td>
+                    <td>Frontend</td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        </section> 
+
+    </div>
+    <div id="taskModal" class="modal"></div>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Assigned Tasks</h2>
+            <table>
+                <tr><td>Expense Tracker:</td><td>Pending</td></tr>
+                <tr><td>Portfolio Website:</td><td>Completed</td></tr>
+                <tr><td>API Integration:</td><td>Pending</td></tr>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("taskModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("taskBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+</body>
+</html>

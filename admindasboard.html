@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z"/>
+      </svg>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            
+        }
+
+        .logo {
+            max-width: 170px;
+        }
+
+        .navbar {
+            height: 100%;
+            width: 200px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #383838;
+            padding-top: 20px;
+        }
+
+        .navbar a {
+            display: block;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: #575757;
+        }
+
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .person {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        .about-box {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 270px;
+            max-width: 270px;
+        }
+        .flex-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 17px;
+            margin: 0 auto;
+        }
+        .team-box{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 740px;
+            max-width: 740px;
+        }
+        table {
+            border-spacing: 20px; /* Adds 20px between columns and rows */
+            border-collapse: separate;
+            width: 100%;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .IT-box{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 650px;
+            max-width: 650px;  
+        }
+        .IT2-box{
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            margin: 40px;
+            min-width: 330px;
+            max-width: 330px; 
+            align-items: center;
+        }
+        .info-box {
+            background-color: #e8ddea;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 60px;
+    width:300px;
+    margin-bottom: 5px;
+}
+
+.info-box i {
+    font-size: 20px;
+    color: #4CAF50;
+    margin-bottom: 5px;
+}
+
+.info-box h3 {
+    font-size: 15px;
+    margin: 5px 0;
+}
+
+.info-box p {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 13px;
+    color: #333;
+}
+
+.about-box:hover, 
+.team-box:hover, 
+.IT-box:hover, 
+.IT2-box:hover, 
+.info-box:hover {
+    background-color: #f0f0f0;
+    transform: scale(1.05);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.about-box:hover, 
+.team-box:hover, 
+.IT-box:hover, 
+.IT2-box:hover, 
+.info-box:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+.modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover, .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 90%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            align-items: center;
+        }
+
+        .form-group button:hover {
+            background-color: #45a049;
+        }
+
+
+    </style>
+</head>
+    <body>
+        <div class="navbar">
+        <img class="logo" src="ingoude.png" alt="">
+        <a href="#dashboard-section">Dashboard</a>
+        <a href="#it-team-section">IT Team</a>
+        <a href="#marketing-team-section">Marketing Team</a>
+        <a href="#creative-team-section">Creative Team</a>
+        <a href="#hr-team-section">HR Team</a>
+        <a id="assignTaskBtn">Assign Task</a>
+        <a href="index.html">Logout</a>
+        </div>
+    
+        <div class="main-content">
+            <h1 id="dashboard-section">Admin Dashboard</h1>
+            <section class="about">
+                <div class="flex-container">
+                    <div class="about-box d-flex align-items-center">
+                        <div class="about-container">
+                            <div class="image-container">
+                                <img class="person" src="employee.jpg" alt="Profile Image" class="profile-image">
+                            </div>
+                            <div class="info-container">
+                                <h4>Aanchal Jha</h4>
+                                <p>Email: aanchal@gmail.com</p>
+                                <p>Phone: +91 8437353848</p>
+                                <p>Company: BlueWave Technologies</p>
+                                <p>Position: Frontend Leader</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="team-box">
+                        <h2>Departments</h2>
+                        <table>
+                            <tr>
+                                <td><b>IT Team:</b></td>
+                                <td>Abha Vashisht</td>
+                                <td>Aanchal Jha</td>
+                                <td>Aalishna Taneja</td>
+                                <td>Aditya Vashisht</td>
+
+                            </tr>
+                            <tr>
+                                <td><b>Marketing Team:</b></td>
+                                <td>Ananya Tuli</td>
+                                <td>Karan Bhalla</td>
+                                <td>Arshpal Singh</td>
+                                <td>Ritu Vashisht</td>
+
+                            </tr>
+                            <tr>
+                                <td><b>Creative Team:</b></td>
+                                <td>Bharvi Garg</td>
+                                <td>Suhavi Kaur</td>
+                                <td>Anoushka Bharara</td>
+                                <td>Ayan Patel</td>
+                            </tr>
+                            <tr>
+                                <td><b>HR Team:</b></td>
+                                <td>Aryaman Gupta</td>
+                                <td>Shaun Jha</td>
+                                <td>Himanshi Bhalla</td>
+                                <td>Ashok Chitkara</td>
+                            </tr>
+                            <tr>
+                                <td><b>Sales Team:</b></td>
+                                <td>Abha Vashisht</td>
+                                <td>Aanchal Jha</td>
+                                <td>Aalishna Taneja</td>
+                                <td>Aditya Vashisht</td>
+                            </tr>
+                            <tr>
+                                <td><b>Finance Team:</b></td>
+                                <td>Ananya Tuli</td>
+                                <td>Karan Bhalla</td>
+                                <td>Arshpal Singh</td>
+                                <td>Ritu Vashisht</td>
+                            </tr>
+                            <tr>
+                                <td><b>PR Team:</b></td>
+                                <td>Bharvi Garg</td>
+                                <td>Suhavi Kaur</td>
+                                <td>Anoushka Bharara</td>
+                                <td>Ayan Patel</td>
+                            </tr>
+                            
+                        </table>
+
+                    </div>
+                </div>
+                <div class="flex-container">
+                    <div class="IT-box">
+                        <h2 id="it-team-section">IT Team</h2>
+                        <table>
+                        <tr>
+                        <td><b>Team Members</b></td>
+                        <td><b>Projects</b></td>
+                        <td><b>Status</b></td>
+                        <td><b>Deadline</b></td>
+                        </tr>
+                        <tr>
+                            <td>Abha Vashisht</td>
+                            <td>Responsive Portfolio</td>
+                            <td style="color: #90A87F;">Completed</td>
+                            
+                            <td>30 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Aanchal Jha</td>
+                            <td>Single Page Application</td>
+                            <td style="color: #90A87F;">Completed</td>
+                            
+                            <td>14 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Aalishna Taneja</td>
+                            <td>Expense Tracker</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>30 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Aditya Vashisht</td>
+                            <td>Quiz App</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                           
+                            <td>30 Sep</td>
+                        </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="IT2-box">
+                        <div class="info-box">
+                            
+                            <h3>Inquiry Success rate</h3>
+                            <p>85%</p>
+                        </div>
+                        <div class="info-box">
+                           
+                            <h3>No. of team members</h3>
+                            <p>4</p>
+                        </div>
+                        <div class="info-box">
+                            
+                            <h3>No. of completed projects</h3>
+                            <p>18</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="flex-container">
+                    <div class="IT2-box">
+                        <div style="background-color: #deeed4;" class="info-box">
+                            
+                            <h3>Inquiry Success rate</h3>
+                            <p>90%</p>
+                        </div>
+                        <div style="background-color: #deeed4;" class="info-box">
+                           
+                            <h3>No. of team members</h3>
+                            <p>4</p>
+                        </div>
+                        <div style="background-color: #deeed4;" class="info-box">
+                            
+                            <h3>No. of completed projects</h3>
+                            <p>25</p>
+                        </div>
+                    </div>
+                    <div class="IT-box">
+                        <h2 id="marketing-team-section">Marketing Team</h2>
+                        <table>
+                        <tr>
+                        <td><b>Team Members</b></td>
+                        <td><b>Projects</b></td>
+                        <td><b>Status</b></td>
+                        <td><b>Deadline</b></td>
+                        </tr>
+                        <tr>
+                            <td>Ananya Tuli</td>
+                            <td>Social Media Campaign</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>25 Oct</td>
+                        </tr>
+                        <tr>
+                            <td>Karan Bhalla</td>
+                            <td>Product Launch Strategy</td>
+                            <td style="color: #90A87F;">Completed</td>
+                            
+                            <td>15 Nov</td>
+                        </tr>
+                        <tr>
+                            <td>Arshpal Singh</td>
+                            <td>SEO Optimization</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>5 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Ritu Vashisht</td>
+                            <td>Email Marketing Campaign</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                           
+                            <td>30 Oct</td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="flex-container">
+                    <div class="IT-box">
+                        <h2 id="creative-team-section">Creative Team</h2>
+                        <table>
+                        <tr>
+                        <td><b>Team Members</b></td>
+                        <td><b>Projects</b></td>
+                        <td><b>Status</b></td>
+                        <td><b>Deadline</b></td>
+                        </tr>
+                        <tr>
+                            <td>Bharvi Garg</td>
+                            <td>Website Redesign</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>25 Oct</td>
+                        </tr>
+                        <tr>
+                            <td>Anoushka Bharara</td>
+                            <td>Brand Identity Development</td>
+                            <td style="color: #90A87F;">Completed</td>
+                            
+                            <td>15 Nov</td>
+                        </tr>
+                        <tr>
+                            <td>Suhavi Kaur</td>
+                            <td>Advertisement Design</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>5 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Ayan Patel</td>
+                            <td>Product Packaging Design</td>
+                            <td style="color: #90A87F;">Completed</td>
+                           
+                            <td>30 Oct</td>
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="IT2-box">
+                        <div style="background-color: #dee8f9;" class="info-box">
+                            
+                            <h3>Inquiry Success rate</h3>
+                            <p>90%</p>
+                        </div>
+                        <div style="background-color: #dee8f9;" class="info-box">
+                           
+                            <h3>No. of team members</h3>
+                            <p>4</p>
+                        </div>
+                        <div style="background-color: #dee8f9;" class="info-box">
+                            
+                            <h3>No. of completed projects</h3>
+                            <p>25</p>
+                        </div>
+                    </div>    
+                </div>
+                <div class="flex-container">
+                    <div class="IT2-box">
+                        <div style="background-color: #f7e5f4;" class="info-box">
+                            
+                            <h3>Inquiry Success rate</h3>
+                            <p>70%</p>
+                        </div>
+                        <div style="background-color: #f7e5f4;" class="info-box">
+                           
+                            <h3>No. of team members</h3>
+                            <p>4</p>
+                        </div>
+                        <div style="background-color: #f7e5f4" class="info-box">
+                            
+                            <h3>No. of completed projects</h3>
+                            <p>30</p>
+                        </div>
+                    </div>
+                    <div style="min-width: 400px;" class="IT-box">
+                        <h2 id="hr-team-section">HR Team</h2>
+                        <table>
+                        <tr>
+                        <td><b>Team Members</b></td>
+                        <td><b>Projects</b></td>
+                        <td><b>Status</b></td>
+                        <td><b>Deadline</b></td>
+                        </tr>
+                        <tr>
+                            <td>Aryaman Gupta</td>
+                            <td>Employee Onboarding Program</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>25 Oct</td>
+                        </tr>
+                        <tr>
+                            <td>Himanshi</td>
+                            <td>Training and Development Sessions</td>
+                            <td style="color: #90A87F;">Completed</td>
+                            
+                            <td>15 Nov</td>
+                        </tr>
+                        <tr>
+                            <td>Shaun Jha</td>
+                            <td>Employee Satisfaction Survey</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                            
+                            <td>5 Sep</td>
+                        </tr>
+                        <tr>
+                            <td>Ashok Chitkara</td>
+                            <td>Performance Appraisal System</td>
+                            <td><i class="bi bi-check">Pending</i></td>
+                           
+                            <td>30 Oct</td>
+                        </tr>
+                        </table>
+                    </div>
+                </div>
+
+                
+
+            </section> 
+            <div id="assignTaskModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                   <center> <h2>Assign Task</h2></center>
+                    <form>
+                        <div class="form-group">
+                            <label for="team">Choose Team</label>
+                            <select id="team" name="team">
+                                <option value="it">IT Team</option>
+                                <option value="marketing">Marketing Team</option>
+                                <option value="creative">Creative Team</option>
+                                <option value="hr">HR Team</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="task">Task</label>
+                            <input type="text" id="task" name="task" placeholder="Enter the task">
+                        </div>
+                        <div class="form-group">
+                            <label for="deadline">Deadline</label>
+                            <input type="date" id="deadline" name="deadline">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit">Assign Task</button>
+                        </div>
+                    </form>
+                </div>
+            </div>   
+        </div>
+        <script>
+            var modal = document.getElementById("assignTaskModal");
+    
+            var btn = document.getElementById("assignTaskBtn");
+    
+            var span = document.getElementsByClassName("close")[0];
+    
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+    
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+    </body>
+</html>
