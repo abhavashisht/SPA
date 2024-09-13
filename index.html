@@ -6,25 +6,25 @@
     <title>Login Page</title>
     <script>
         function login() {
-            // Prompt for username and password
+           
             var username = prompt("Enter your username:");
             var password = prompt("Enter your password:");
 
-            // Simple "database" with two users
+          
             var users = {
                 admin: "admin123",
                 employee: "employee123"
             };
 
-            // Check if the entered username exists and the password matches
+         
             if (users[username] && users[username] === password) {
                 alert("Login successful! Welcome, " + username);
                 
-                // Redirect to different pages based on the username
+               
                 if (username === "admin") {
-                    window.location.href = "admindasboard.html"; // Replace with actual admin page URL
+                    window.location.href = "admindasboard.html";
                 } else if (username === "employee") {
-                    window.location.href = "employee.html"; // Replace with actual employee page URL
+                    window.location.href = "employee.html";
                 }
 
             } else {
